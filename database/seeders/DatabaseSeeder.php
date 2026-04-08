@@ -59,15 +59,18 @@ class DatabaseSeeder extends Seeder
             'user_id' => $siswa1->id,
             'book_id' => $buku1->id,
             'tanggal_pinjam' => Carbon::now()->subDays(2),
-            'tanggal_kembali' => Carbon::now()->subDays(3),
+            'tanggal_kembali' => null,
             'status' => 'pinjam'
         ]);
+
+        $buku1->decrement('stok');
+
         transactions::create([
             'user_id' => $siswa1->id,
             'book_id' => $buku1->id,
             'tanggal_pinjam' => Carbon::now()->subDays(10),
             'tanggal_kembali' => Carbon::now()->subDays(3),
-            'status' => 'pinjam'
+            'status' => 'kembali'
         ]);
     }
 }
